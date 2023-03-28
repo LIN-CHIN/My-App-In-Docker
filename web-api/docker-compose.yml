@@ -1,6 +1,15 @@
 version: '3'
 
 services:
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    restart: always
+    ports:
+      - '80:80'
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/logs:/var/log/nginx
   db:
     container_name: docker-toturial-db
     image: postgres:14.1-alpine
@@ -25,3 +34,5 @@ services:
       - db
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+
+
