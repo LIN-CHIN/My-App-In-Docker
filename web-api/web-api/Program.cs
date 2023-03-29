@@ -18,6 +18,14 @@ var apiSettings = builder.Configuration.GetSection("AppSettings").Get<AppSetting
 // Set Entity Framework
 builder.Services.AddDbContext<DataContext>(opt => opt.UseNpgsql(apiSettings.ConnectionString));
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowVueAppOrigin",
+        builder => builder.WithOrigins("http://localhost:8080")
+                          .AllowAnyMethod()
+                          .AllowAnyHeader());
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -35,6 +43,8 @@ using (var scope = app.Services.CreateScope())
     var context = services.GetRequiredService<DataContext>();
     context.Database.Migrate();
 }
+
+app.UseCors("AllowVueAppOrigin");
 
 app.UseHttpsRedirection();
 

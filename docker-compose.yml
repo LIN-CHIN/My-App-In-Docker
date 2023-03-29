@@ -27,9 +27,10 @@ services:
       - ~/.docker-volumns/docker-toturial-db:/var/lib/postgresql/data
   api:
     container_name: docker-toturial-api  
+    restart: always
     build:
       context: .
-      dockerfile: web-api/Dockerfile
+      dockerfile: ./web-api/web-api/Dockerfile
     image: web-api:v1.0
     ports:
       - '8080:80'
@@ -37,5 +38,15 @@ services:
       - db
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+  vue3:
+    container_name: docker-toturial-vue3
+    restart: always
+    build:
+      context: .
+      dockerfile: ./front-end/Dockerfile
+    ports:
+      - '7789:8080'
+    depends_on:
+      - api
 
 

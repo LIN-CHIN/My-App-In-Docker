@@ -5,10 +5,11 @@ WORKDIR /app
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["web-api/web-api.csproj", "web-api/"]
+COPY ["./web-api/web-api/web-api.csproj", "web-api/"]
 RUN dotnet restore "web-api/web-api.csproj"
-COPY . .
+
 WORKDIR "/src/web-api"
+COPY ./web-api/web-api/ .
 RUN dotnet build "web-api.csproj" -c Release -o /app/build
 
 FROM build AS publish
