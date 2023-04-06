@@ -1,5 +1,5 @@
 # My-App-In-Docker
-This is a simple project that involves containerizing multiple applications combined together.
+This is a simple project that involves containerizing multiple applications into one compose stack.
 
 ## Containerized applications
 1. `Backend` :  .NET 6 Web API 
