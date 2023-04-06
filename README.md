@@ -5,7 +5,7 @@ For convenience, the application isn't divided into multiple projects, and all a
 ## Containerized applications
 1. `Backend` :  .NET 6 Web API 
 2. `Frontend` : Vue3 cli
-3. `Web Server` : Niginx 
+3. `Web Server` : Nginx 
 4. `Database` : Postgresql
 
 ## Get started
